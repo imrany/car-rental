@@ -18,7 +18,7 @@ const options=[
 ]
 
 const CarListing = () => {
-  const [selectedOption,setSelectedOption]=useState("")
+  const [selectedOption,setSelectedOption]=useState({})
   switch (selectedOption.value) {
     case "low":
       carData.sort((a,b)=>{
@@ -32,7 +32,7 @@ const CarListing = () => {
       break;
 
     default:
-      setCarSortList(carData)
+      console.log("select sort category")
       break;
   }
 
@@ -50,7 +50,7 @@ const CarListing = () => {
                 </span>
 
                 <Select
-                  defaultValue={selectedOption}
+                  defaultValue="Sort"
                   options={options}
                   onChange={setSelectedOption}
                 />
