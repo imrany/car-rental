@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import CarItem from "../components/UI/CarItem";
 import carData from "../assets/data/carData";
+import Select from "react-select";
+
+const options=[
+  {
+    label:"Low to High",
+    value:"low"
+  },
+  {
+    label:"High to Low",
+    value:"high"
+  }
+]
 
 const CarListing = () => {
+  const [selectedOption,setSelectedOption]=useState(null)
+  console.log(selectedOption)
+
   return (
     <Helmet title="Cars">
       <CommonSection title="Car Listing" />
@@ -19,11 +34,11 @@ const CarListing = () => {
                   <i class="ri-sort-asc"></i> Sort By
                 </span>
 
-                <select>
-                  <option>Select</option>
-                  <option value="low">Low to High</option>
-                  <option value="high">High to Low</option>
-                </select>
+                <Select
+                  defaultValue={selectedOption}
+                  options={options}
+                  onChange={setSelectedOption}
+                />
               </div>
             </Col>
 
