@@ -18,8 +18,23 @@ const options=[
 ]
 
 const CarListing = () => {
-  const [selectedOption,setSelectedOption]=useState(null)
-  console.log(selectedOption)
+  const [selectedOption,setSelectedOption]=useState("")
+  switch (selectedOption.value) {
+    case "low":
+      carData.sort((a,b)=>{
+        return a.price-b.price
+      })
+      break;
+    case "high":
+      carData.sort((a,b)=>{
+        return b.price-a.price;
+      })
+      break;
+
+    default:
+      setCarSortList(carData)
+      break;
+  }
 
   return (
     <Helmet title="Cars">
