@@ -30,10 +30,6 @@ const CarListing = () => {
         return b.price-a.price;
       })
       break;
-
-    default:
-      console.log("select sort category")
-      break;
   }
 
   return (
