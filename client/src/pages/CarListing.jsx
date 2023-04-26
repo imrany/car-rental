@@ -50,7 +50,7 @@ const CarListing = () => {
                 </span>
 
                 <Select
-                  defaultValue="Sort"
+                  defaultValue="Sort by price"
                   options={options}
                   onChange={setSelectedOption}
                 />
