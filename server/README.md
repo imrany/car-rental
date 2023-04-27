@@ -25,7 +25,7 @@ npm i
 
 Then Run
 ```bash 
-docker-compose
+docker-compose up -d
 ```
 # Sql
 ```bash
