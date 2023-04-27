@@ -38,7 +38,8 @@ const Header = () => {
               <div className="header__top__left">
                 <span>Need Help?</span>
                 <span className="header__top__help">
-                  <i class="ri-phone-fill"></i> +254718472188
+                  <i class="ri-phone-fill"></i> 
+                  <a href="tel:+254718472188" target="_blank" rel="noreferrer" style={{color:"white", textDecoration:"none"}}>+254718472188</a>
                 </span>
               </div>
             </Col>
@@ -46,11 +47,13 @@ const Header = () => {
             <Col lg="6" md="6" sm="6">
               <div className="header__top__right d-flex align-items-center justify-content-end gap-3">
                 <Link to="#" className=" d-flex align-items-center gap-1">
-                  <i class="ri-login-circle-line"></i> Login
+                  <i class="ri-login-circle-line"></i> 
+                  <Link to="/login">Login</Link>
                 </Link>
 
                 <Link to="#" className=" d-flex align-items-center gap-1">
-                  <i class="ri-user-line"></i> Register
+                  <i class="ri-user-line"></i> 
+                  <Link to="/register">Register</Link>
                 </Link>
               </div>
             </Col>

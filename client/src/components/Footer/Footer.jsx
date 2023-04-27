@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import "../../styles/footer.css";
+import { toast } from "react-hot-toast";
 
 const quickLinks = [
   {
@@ -29,6 +30,25 @@ const quickLinks = [
 const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();
+
+  function validateEmail(email){
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)
+  }
+  
+  const [email,setEmail]=useState(null);
+  async function subcribeToNewsLetter(e){
+    try {
+      if(email){
+        if(validateEmail(email)){
+          toast.success(email)
+        }else{
+          toast.error("Enter a valid email")
+        }
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
   return (
     <footer className="footer">
       <Container>
@@ -82,9 +102,9 @@ const Footer = () => {
               <h5 className="footer__link-title">Email</h5>
               <p className="section__description">Send Email</p>
               <div className="newsletter">
-                <input type="email" placeholder="Email" />
+                <input type="email" placeholder="Email" onChange={e=>setEmail(e.target.value)} title="Subcribe To Our NewsLetter"/>
                 <span>
-                  <i class="ri-send-plane-line"></i>
+                  <i class="ri-send-plane-line" onClick={subcribeToNewsLetter}></i>
                 </span>
               </div>
             </div>

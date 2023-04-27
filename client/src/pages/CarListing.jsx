@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
@@ -32,6 +32,9 @@ const CarListing = () => {
       break;
   }
 
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[carData])
   return (
     <Helmet title="Cars">
       <CommonSection title="Car Listing" />

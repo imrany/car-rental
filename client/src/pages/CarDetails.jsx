@@ -5,7 +5,7 @@ import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import { useParams } from "react-router-dom";
 import BookingForm from "../components/UI/BookingForm";
-import PaymentMethod from "../components/UI/PaymentMethod";
+import { toast } from "react-hot-toast";
 
 const CarDetails = () => {
   const { slug } = useParams();
@@ -107,19 +107,9 @@ const CarDetails = () => {
               </div>
             </Col>
 
-            <Col lg="7" className="mt-5">
-              <div className="booking-info mt-5">
-                <h5 className="mb-4 fw-bold ">Booking Information</h5>
-                <BookingForm />
-              </div>
-            </Col>
+            <BookingForm price={singleCarItem.price}/>
 
-            <Col lg="5" className="mt-5">
-              <div className="payment__info mt-5">
-                <h5 className="mb-4 fw-bold ">Payment Information</h5>
-                <PaymentMethod />
-              </div>
-            </Col>
+            
           </Row>
         </Container>
       </section>
