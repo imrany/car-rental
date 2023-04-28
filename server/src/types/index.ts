@@ -6,3 +6,12 @@ type contactBody={
 export interface contactItems{
     body:contactBody
 }
+
+type stkBody={
+    phoneNumber:number,
+    amount:number
+}
+export interface stkRequest{
+    body:stkBody,
+    token:string
+}
