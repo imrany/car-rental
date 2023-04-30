@@ -62,8 +62,8 @@ export const stkPush=(req:stkRequest,res:any)=>{
  };
  axios.post(stkURL,data,{
     headers:headers
- }).then(response=>console.log(response.data))
- .catch(err=>console.log({error:err}))
+ }).then(response=>res.send(response.data))
+ .catch(err=>res.send({error:err.response.data}))
 }
 
 //callback 
