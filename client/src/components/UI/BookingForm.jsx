@@ -6,87 +6,15 @@ import masterCard from "../../assets/all-images/master-card.jpg";
 import mpesa from "../../assets/all-images/mpesa.png";
 import "../../styles/payment-method.css";
 import {toast} from "react-hot-toast"
+import { 
+    driveOption,
+    persons,
+    days,
+    luggages, 
+} from "../../assets/data/SelectOptions";
 
-const persons=[
-  {
-    label:"1 Person",
-    value:1
-  },
-  {
-    label:"2 Person",
-    value:2
-  },
-  {
-    label:"3 Person",
-    value:3
-  },
-  {
-    label:"4 Person",
-    value:4
-  },
-  {
-    label:"5+ Person",
-    value:"5+ person"
-  }
-]
 
-const luggages=[
-  {
-    label:"1 luggage",
-    value:1
-  },
-  {
-    label:"2 luggage",
-    value:2
-  },
-  {
-    label:"3 luggage",
-    value:3
-  },
-  {
-    label:"4 luggage",
-    value:4
-  },
-  {
-    label:"5+ luggage",
-    value:"5+ luggage"
-  }
-]
-const days=[
-  {
-    label:"1 day",
-    value:1
-  },
-  {
-    label:"2 days",
-    value:2
-  },
-  {
-    label:"3 days",
-    value:3
-  },
-  {
-    label:"4 days",
-    value:4
-  },
-  {
-    label:"5+ days",
-    value:"5+ days"
-  }
-]
-
-const driveOption=[
-  {
-    label:"Self Drive",
-    value:"Self Drive"
-  },
-  {
-    label:"With A Drive",
-    value:"With A Driver"
-  }
-]
-
-const BookingForm = ({price}) => {
+const BookingForm = ({price,car_id}) => {
   const [numberOfPerson,setNumberOfPerson]=useState({})
   const [numberOfLuggage,setNumberOfLuggage]=useState({})
   const [numberOfDays,setNumberOfDays]=useState({})
@@ -107,44 +35,50 @@ const BookingForm = ({price}) => {
   const submitHandler = async(e) => {
     e.preventDefault()
     try {
-      let url=`http://localhost:5000/api/reserve_car`
-      const response = await fetch(url,{
-        method:"POST",
-        headers:{
-          "content-type":"application/json"
-        },
-        body:JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          phone,
-          numberOfDays,
-          numberOfLuggage,
-          numberOfPerson,
-          drive,
-          fromAddress,
-          toAddress,
-          journeyTime,
-          journeyDate,
-          text,
-          transactionOption,
-          price
+      if(transactionOption==="mpesa"){
+        let url=`http://localhost:8000/api/reserve_car`
+        const response = await fetch(url,{
+          method:"POST",
+          headers:{
+            "content-type":"application/json"
+          },
+          body:JSON.stringify({
+            car_id,
+            firstName,
+            lastName,
+            email,
+            phoneNumber:phone.slice(1,10),
+            numberOfDays:numberOfDays.value,
+            numberOfLuggage:numberOfLuggage.value,
+            numberOfPerson:numberOfPerson.value,
+            drive:drive.value,
+            fromAddress,
+            toAddress,
+            journeyTime,
+            journeyDate,
+            reason:text,
+            amount:price,
+            transactionOption
+          })
         })
-      })
-      // document.getElementById("Form").reset()
-      const parseRes=await response.json();
-      function reserveProcessing(a){
-        
+        document.getElementById("Form").reset()
+        const parseRes=await response.json();
+        if(parseRes.error){
+          if(parseRes.error.code){
+            if(parseRes.error.routine==="_bt_check_unique"){
+              toast.error("This car have been reserved by another person, check another car")
+            }else{
+              toast.error(parseRes.error.routine)
+            }
+          }else{
+            toast.error(parseRes.error)
+          }
+        }else{
+          toast.success(parseRes.msg)
+        }
+      }else{
+        toast.error("Select Mpesa as payment option")
       }
-      toast.promise(
-        reserveProcessing(parseRes),
-         {
-           loading: 'Processing car reservation...',
-           success: <b>Car reserved!</b>,
-           error: <b>Could not reserve.</b>,
-         }
-       );
-      console.log(parseRes)
     } catch (error) {
       toast.error(error.message);
     }

@@ -1,8 +1,8 @@
 import express from "express"
 import { 
-    test,
+    reserve,
     contact
-} from "../controller/user"
+} from "../controller/reserve"
 import{
     token,
     stkPush,
@@ -11,7 +11,7 @@ import{
 } from '../controller/mpesa'
 const router=express.Router()
 
-router.get("/",test)
+router.post("/reserve_car",reserve)
 router.post('/contact', contact)
 
 router.post('/stkpush',token,stkPush);

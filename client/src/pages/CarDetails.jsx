@@ -107,7 +107,7 @@ const CarDetails = () => {
               </div>
             </Col>
 
-            <BookingForm price={singleCarItem.price}/>
+            <BookingForm price={singleCarItem.price} car_id={singleCarItem.id}/>
 
             
           </Row>
