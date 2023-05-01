@@ -1,5 +1,5 @@
 import axios from 'axios'
-import pool from "../postgres.js"
+import pool from "../postgres"
 import { reserveRequest } from '../types';
 import * as dotenv from 'dotenv'
 dotenv.config()
@@ -124,7 +124,7 @@ export const callBack=async(req:any,res:any,next:any)=>{
             amount,
             transactionOption   
         }=req.data
-        
+
         const {
             MerchantRequestID,
             ResultCode,
