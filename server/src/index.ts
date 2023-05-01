@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import * as dotenv from "dotenv"
 import router from "./routes/api"
+import views from "./routes/view"
 dotenv.config()
 
 const options={
@@ -10,8 +11,10 @@ const options={
 const app=express()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.set('view engine','ejs');
 app.use(cors(options))
 app.use("/api",router)
+app.use('/admin',views)
 
 const port=process.env.PORT||8000
 app.listen(port,()=>{
