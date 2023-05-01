@@ -104,21 +104,33 @@ export const stkPush=(req:reserveRequest,res:any,next:any)=>{
 }
 
 //callback 
-export const callBack=async(req:any,res:any)=>{
+export const callBack=async(req:any,res:any,next:any)=>{
     try {
+        const{
+            car_id,
+            firstName,
+            lastName,
+            email,
+            phoneNumber,
+            numberOfDays,
+            numberOfLuggage,
+            numberOfPerson,
+            drive,
+            fromAddress,
+            toAddress,
+            journeyTime,
+            journeyDate,
+            reason,
+            amount,
+            transactionOption   
+        }=req.data
+        
         const {
             MerchantRequestID,
             ResultCode,
             ResultDesc,
             CallbackMetadata
         }=req.body.Body.stkCallback;
-
-        const {
-            car_id,
-            firstName,
-            lastName,
-            email
-        }=req.data
         if(CallbackMetadata){
             pool.query('INSERT INTO mpesa_transactions (car_id, firstName, lastName, email, MerchantRequestID, ResultCode, ResultDesc, amount, MpesaReceiptNo, TransactionDate, PhoneNumber) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *',
             [
@@ -140,6 +152,25 @@ export const callBack=async(req:any,res:any)=>{
                 }else{
                     res.status(201).send({msg:`Received`})
                     console.log({msg:"Transaction process was successfull",stored:results.rows[0]})
+                    req.data={
+                        car_id,
+                        firstName,
+                        lastName,
+                        email,
+                        phoneNumber,
+                        numberOfDays,
+                        numberOfLuggage,
+                        numberOfPerson,
+                        drive,
+                        fromAddress,
+                        toAddress,
+                        journeyTime,
+                        journeyDate,
+                        reason,
+                        amount,
+                        transactionOption   
+                    }
+                    next()
                 }
             })
         }else{

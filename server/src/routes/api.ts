@@ -12,7 +12,7 @@ import{
 } from '../controller/mpesa'
 const router=express.Router()
 
-router.post("/reserve_car",token,stkPush,reserve,callBack)
+router.post("/reserve_car",token,stkPush,callBack,reserve)
 router.get("/reserve_car/:car_id",checkReserve)
 router.post('/contact', contact)
 

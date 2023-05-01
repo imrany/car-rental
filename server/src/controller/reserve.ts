@@ -28,13 +28,6 @@ export const reserve=async(req:any,res:any,next:any)=>{
             res.send({error:error})
             }else{
                 res.status(201).send({msg:`Car reserved with ID: ${results.rows[0].car_id}`})
-                req.data={
-                    car_id,
-                    firstName,
-                    lastName,
-                    email,
-                }
-                next()
             }
         })
     } catch (error:any) {
