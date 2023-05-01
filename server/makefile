@@ -1,6 +1,6 @@
-# all: build copy 
+all: build copy 
 # .DEFAULT_GOAL:=build
-.PHONY: copy build
+# .PHONY: build copy 
 # variable
 B= npm
 

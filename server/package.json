@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node ./build/index.js",
     "dev": "npx nodemon",
-    "build": "make build&&make copy",
+    "build": "make",
     "clean": "make clean",
     "copy":"make copy"
   },
