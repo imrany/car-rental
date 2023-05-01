@@ -7,11 +7,26 @@ export interface contactItems{
     body:contactBody
 }
 
-type stkBody={
+type reserveBody={
+    car_id:number,
     phoneNumber:number,
-    amount:number
+    amount:number,
+    firstName:string,
+    lastName:string,
+    email:string,
+    numberOfDays:string,
+    numberOfLuggage:string,
+    numberOfPerson:string,
+    drive:string,
+    fromAddress:string,
+    toAddress:string,
+    journeyTime:string,
+    journeyDate:string,
+    reason:string,
+    transactionOption:string
 }
-export interface stkRequest{
-    body:stkBody,
-    token:string
+export interface reserveRequest{
+    body:reserveBody,
+    token:string,
+    data:reserveBody
 }

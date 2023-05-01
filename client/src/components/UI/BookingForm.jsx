@@ -14,7 +14,7 @@ import {
 } from "../../assets/data/SelectOptions";
 
 
-const BookingForm = ({price,car_id}) => {
+const BookingForm = ({price,car_id,Btn}) => {  
   const [numberOfPerson,setNumberOfPerson]=useState({})
   const [numberOfLuggage,setNumberOfLuggage]=useState({})
   const [numberOfDays,setNumberOfDays]=useState({})
@@ -61,7 +61,6 @@ const BookingForm = ({price,car_id}) => {
             transactionOption
           })
         })
-        document.getElementById("Form").reset()
         const parseRes=await response.json();
         if(parseRes.error){
           if(parseRes.error.code){
@@ -73,9 +72,25 @@ const BookingForm = ({price,car_id}) => {
           }else{
             toast.error(parseRes.error)
           }
+        }else if (parseRes.CheckoutRequestID){
+          // toast.success("")
+          function stk(){
+            document.getElementById("Form").reset()
+            return "Stk push send, Check your phone";
+          }
+          setTimeout(stk(),6000)
+          toast.promise(
+            stk(),
+             {
+               loading: 'Sending an stk push...',
+               success: <b>Sent, Check your phone</b>,
+               error:<b>Could not send, try again!.</b>,
+             }
+          );
         }else{
           toast.success(parseRes.msg)
         }
+        console.log(parseRes)
       }else{
         toast.error("Select Mpesa as payment option")
       }
@@ -84,6 +99,17 @@ const BookingForm = ({price,car_id}) => {
     }
   };
 
+  const [submitBtn,setSubmitBtn]=useState(
+    <div className="payment text-end mt-5">
+      <button className="submit-btn" type="submit">Reserve Now</button>
+    </div>
+  )
+  console.log(Btn)
+  if(Btn==="Reserved"){
+    const btn=document.querySelector('.submit-btn');
+    btn.style.background="gray"
+    btn.disabled=true
+  }
 
   return (
     <Form onSubmit={submitHandler} id="Form">
@@ -166,7 +192,7 @@ const BookingForm = ({price,car_id}) => {
                   rows={5}
                   type="textarea"
                   className="textarea"
-                  placeholder="Write"
+                  placeholder="I'll like to take my family out..."
                   onChange={e=>setText(e.target.value)}
                   required
                 ></textarea>
@@ -204,9 +230,7 @@ const BookingForm = ({price,car_id}) => {
 
               <img src={mpesa} alt="" />
             </div>
-            <div className="payment text-end mt-5">
-              <button type="submit">Reserve Now</button>
-            </div>
+              {submitBtn}
           </div>
           </Col>
         </Row>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import carData from "../assets/data/carData";
 import { Container, Row, Col } from "reactstrap";
@@ -9,12 +9,44 @@ import { toast } from "react-hot-toast";
 
 const CarDetails = () => {
   const { slug } = useParams();
-
+  const [ifReserved,setIfReserved]=useState(null)
+  const [Btn,setBtn]=useState(null)
+  
   const singleCarItem = carData.find((item) => item.carName === slug);
+  
+  async function seeIfReserved(){
+    try {
+      const url=`http://localhost:8000/api/reserve_car/${singleCarItem.id}`
+      const response=await fetch(url)
+      const parseRes=await response.json();
+      if (parseRes.not_reserved){
+        setBtn(parseRes.not_reserved)
+        setIfReserved(
+          <p style={{color:'#fff', fontSize:'small', background:"green", padding:"9px 20px",borderRadius: '50px'}} title="This car is available">
+            {parseRes.not_reserved}
+          </p>
+        )
+      }else if(parseRes.reserved){
+        setBtn(parseRes.reserved)
+        setIfReserved(
+        <p style={{color:'#fff', fontSize:'small', background:"#333", padding:"9px 20px",borderRadius: '50px'}} title="This car is already reserved">
+          <i class="ri-lock-fill" style={{ marginRight:"10px" }}></i> {parseRes.reserved}
+        </p>
+        )
+      }else if (parseRes.error.code){
+        toast.error(parseRes.error.code)
+        console.log(parseRes.error)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    seeIfReserved();
   }, [singleCarItem]);
+
 
   return (
     <Helmet title={singleCarItem.carName}>
@@ -27,7 +59,10 @@ const CarDetails = () => {
 
             <Col lg="6">
               <div className="car__info">
-                <h2 className="section__title">{singleCarItem.carName}</h2>
+                <div style={{display:'flex',flexWrap:'wrap', justifyContent:'space-between'}}>
+                  <h2 className="section__title">{singleCarItem.carName}</h2>
+                  {ifReserved}
+                </div>
 
                 <div className=" d-flex align-items-center gap-5 mb-4 mt-3">
                   <h6 className="rent__price fw-bold fs-4">
@@ -107,7 +142,7 @@ const CarDetails = () => {
               </div>
             </Col>
 
-            <BookingForm price={singleCarItem.price} car_id={singleCarItem.id}/>
+            <BookingForm price={singleCarItem.price} car_id={singleCarItem.id} Btn={Btn}/>
 
             
           </Row>

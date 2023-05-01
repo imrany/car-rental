@@ -1,6 +1,6 @@
 import axios from 'axios'
 import pool from "../postgres.js"
-import { stkRequest } from '../types';
+import { reserveRequest } from '../types';
 import * as dotenv from 'dotenv'
 dotenv.config()
 
@@ -40,8 +40,25 @@ export const token=(req:any,res:any,next:any)=>{
 }
 
 //stk push
-export const stkPush=(req:stkRequest,res:any)=>{
- const {phoneNumber,amount}=req.body;
+export const stkPush=(req:reserveRequest,res:any,next:any)=>{
+ const {
+    car_id,
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    numberOfDays,
+    numberOfLuggage,
+    numberOfPerson,
+    drive,
+    fromAddress,
+    toAddress,
+    journeyTime,
+    journeyDate,
+    reason,
+    amount,
+    transactionOption
+ }=req.body;
  const token=req.token;
  const headers={
     Authorization:'Bearer '+token
@@ -52,7 +69,7 @@ export const stkPush=(req:stkRequest,res:any)=>{
     "Password": newPassword(),
     "Timestamp": formated(),
     "TransactionType": "CustomerPayBillOnline",//for Till use -> CustomerBuyGoodsOnline
-    "Amount": amount,
+    "Amount": 1,
     "PartyA": `254${phoneNumber}`, //254703730090
     "PartyB": process.env.SHORT_CODE,
     "PhoneNumber": `254${phoneNumber}`, //254703730090
@@ -62,42 +79,90 @@ export const stkPush=(req:stkRequest,res:any)=>{
  };
  axios.post(stkURL,data,{
     headers:headers
- }).then(response=>res.send(response.data))
- .catch(err=>res.send({error:err.response.data}))
+ }).then(response=>{
+    res.send(response.data)
+    req.data={
+        car_id,
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        numberOfDays,
+        numberOfLuggage,
+        numberOfPerson,
+        drive,
+        fromAddress,
+        toAddress,
+        journeyTime,
+        journeyDate,
+        reason,
+        amount,
+        transactionOption   
+    }
+    next();
+    }).catch(err=>res.send({error:err.response.data}))
 }
 
 //callback 
-// export const callBack=async(req:any,res:any)=>{
-//     try {
-//         const {MerchantRequestID,ResultCode,ResultDesc,CallbackMetadata}=req.body.Body.stkCallback;
-//         if(CallbackMetadata){
-//             const stored=await Transaction.create({
-//                 MerchantRequestID,
-//                 ResultCode,
-//                 ResultDesc,
-//                 amount:CallbackMetadata.Item[0].Value,
-//                 MpesaReceiptNo:CallbackMetadata.Item[1].Value,
-//                 TransactionDate:CallbackMetadata.Item[3].Value,
-//                 PhoneNumber:CallbackMetadata.Item[4].Value
-//             });
+export const callBack=async(req:any,res:any)=>{
+    try {
+        const {
+            MerchantRequestID,
+            ResultCode,
+            ResultDesc,
+            CallbackMetadata
+        }=req.body.Body.stkCallback;
 
-//               res.send({msg:"Recieved"})
-//               console.log({msg:"Transaction process was successfull"},stored)
-//         }else{
-//             res.send({msg:"Recieved"})
-//             console.log({msg:"Transaction process was cancelled"},req.body)
-//         }
-//     } catch (error:any) {
-//         res.status(500).send({error:error.message})
-//     }
-// }
+        const {
+            car_id,
+            firstName,
+            lastName,
+            email
+        }=req.data
+        if(CallbackMetadata){
+            pool.query('INSERT INTO mpesa_transactions (car_id, firstName, lastName, email, MerchantRequestID, ResultCode, ResultDesc, amount, MpesaReceiptNo, TransactionDate, PhoneNumber) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *',
+            [
+                car_id,
+                firstName,
+                lastName,
+                email,
+                MerchantRequestID,
+                ResultCode,
+                ResultDesc,
+                CallbackMetadata.Item[0].Value, //amount
+                CallbackMetadata.Item[1].Value, //MpesaReceiptNo
+                CallbackMetadata.Item[3].Value, //TransactionDate
+                CallbackMetadata.Item[4].Value //PhoneNumber
+            ],
+            (error, results) => {
+                if (error) {
+                res.send({error:error})
+                }else{
+                    res.status(201).send({msg:`Received`})
+                    console.log({msg:"Transaction process was successfull",stored:results.rows[0]})
+                }
+            })
+        }else{
+            res.send({msg:"Recieved"})
+            console.log({msg:"Transaction process was cancelled"},req.body)
+        }
+    } catch (error:any) {
+        res.status(500).send({error:error.message})
+    }
+}
 
-//get transactions
-// export const getTransaction=async(req:any,res:any)=>{
-//     try {
-//         const transc=await Transaction.find({});
-//         res.send({msg:"transaction data", transc})
-//     } catch (error:any) {
-//         res.status(500).send({error:error.message})
-//     }
-// }
+// get transactions
+export const getTransaction=async(req:any,res:any)=>{
+    try {
+        pool.query('SELECT * FROM mpesa_transactions RETURNING *',
+        (error, results) => {
+            if (error) {
+            res.send({error:error})
+            }else{
+                res.status(201).send({msg:`transaction data`,transactions:results.rows})
+            }
+        })
+    } catch (error:any) {
+        res.status(500).send({error:error.message})
+    }
+}
