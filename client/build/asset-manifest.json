@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1cc1d4b2.css",
+    "main.js": "/static/js/main.a99e27d9.js",
+    "static/media/remixicon.svg?t=1590207869815": "/static/media/remixicon.9cedd2150922ead84869.svg",
+    "static/media/ava-1.jpg": "/static/media/ava-1.1e2f4b324cbab4d5c8d2.jpg",
+    "static/media/remixicon.eot?t=1590207869815": "/static/media/remixicon.5cb99e6cba5a4619063f.eot",
+    "static/media/remixicon.ttf?t=1590207869815": "/static/media/remixicon.f2616f597cf98f38d234.ttf",
+    "static/media/Honda CRV.png": "/static/media/Honda CRV.f3c593670653e2912639.png",
+    "static/media/Toyota Prado TX.png": "/static/media/Toyota Prado TX.41d3ef7da73e62899957.png",
+    "static/media/ava-2.jpg": "/static/media/ava-2.e7b8fed97bdcab625df0.jpg",
+    "static/media/Noah.gif": "/static/media/Noah.7496c2f5e234827f839a.gif",
+    "static/media/ava-4.jpg": "/static/media/ava-4.28c2f810c3ce1f9cc911.jpg",
+    "static/media/remixicon.woff?t=1590207869815": "/static/media/remixicon.8d09fa11700ed63cf96e.woff",
+    "static/media/Subaru Forester.png": "/static/media/Subaru Forester.4ac6b7786839bbedfe05.png",
+    "static/media/bmw-offer.png": "/static/media/bmw-offer.ecfb9ac1bf7b5ef615a6.png",
+    "static/media/remixicon.woff2?t=1590207869815": "/static/media/remixicon.90668f6f9b3c2c18a090.woff2",
+    "static/media/slider-2.jpg": "/static/media/slider-2.4cd97469474175a97a63.jpg",
+    "static/media/slider-3.jpg": "/static/media/slider-3.ed96ff21726e81c10f40.jpg",
+    "static/media/nissan-offer.png": "/static/media/nissan-offer.6eddc86310b7cac538ae.png",
+    "static/media/ava-3.jpg": "/static/media/ava-3.174bb3f999cdeada3d41.jpg",
+    "static/media/toyota-offer-2.png": "/static/media/toyota-offer-2.861de085d1c782df9e9d.png",
+    "static/media/offer-toyota.png": "/static/media/offer-toyota.4b2435e447a7832d9f4a.png",
+    "static/media/mercedes-offer.png": "/static/media/mercedes-offer.d177a4fe9e2002ddb24d.png",
+    "static/media/Nissan Urvan.jpg": "/static/media/Nissan Urvan.ba148d6e5d26fa24b048.jpg",
+    "static/media/slider-1.jpg": "/static/media/slider-1.df185de6fe26ce7346f2.jpg",
+    "static/media/drive.jpg": "/static/media/drive.b72e6f2d1ccdbd6550a9.jpg",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html",
+    "main.1cc1d4b2.css.map": "/static/css/main.1cc1d4b2.css.map",
+    "main.a99e27d9.js.map": "/static/js/main.a99e27d9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1cc1d4b2.css",
+    "static/js/main.a99e27d9.js"
+  ]
+}
