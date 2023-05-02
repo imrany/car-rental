@@ -9,7 +9,11 @@ function formated(){
     let m=dt.getMonth()
     m++
     const month=m<10?`0${m}`:m
-    const YmdHMS=`${dt.getFullYear()}${month}${dt.getDate()}${dt.getHours()}${dt.getMinutes()}${dt.getSeconds()}`
+    const minutes=dt.getMinutes()<10?`0${dt.getMinutes()}`:dt.getMinutes()
+    const date=dt.getDate()<10?`0${dt.getDate()}`:dt.getDate()
+    const sec=dt.getSeconds()<10?`0${dt.getSeconds()}`:dt.getSeconds()
+    const hour=dt.getHours()<10?`0${dt.getHours()}`:dt.getHours()
+    const YmdHMS=`${dt.getFullYear()}${month}${date}${hour}${minutes}${sec}`
     return YmdHMS;
 }
 
@@ -80,7 +84,6 @@ export const stkPush=(req:reserveRequest,res:any,next:any)=>{
  axios.post(stkURL,data,{
     headers:headers
  }).then(response=>{
-    res.send(response.data)
     req.data={
         car_id,
         firstName,
@@ -97,7 +100,8 @@ export const stkPush=(req:reserveRequest,res:any,next:any)=>{
         journeyDate,
         reason,
         amount,
-        transactionOption   
+        transactionOption,
+        response:response.data   
     }
     next();
     }).catch(err=>res.send({error:err.response.data}))
@@ -106,25 +110,6 @@ export const stkPush=(req:reserveRequest,res:any,next:any)=>{
 //callback 
 export const callBack=async(req:any,res:any,next:any)=>{
     try {
-        const{
-            car_id,
-            firstName,
-            lastName,
-            email,
-            phoneNumber,
-            numberOfDays,
-            numberOfLuggage,
-            numberOfPerson,
-            drive,
-            fromAddress,
-            toAddress,
-            journeyTime,
-            journeyDate,
-            reason,
-            amount,
-            transactionOption   
-        }=req.data
-
         const {
             MerchantRequestID,
             ResultCode,
@@ -132,12 +117,8 @@ export const callBack=async(req:any,res:any,next:any)=>{
             CallbackMetadata
         }=req.body.Body.stkCallback;
         if(CallbackMetadata){
-            pool.query('INSERT INTO mpesa_transactions (car_id, firstName, lastName, email, MerchantRequestID, ResultCode, ResultDesc, amount, MpesaReceiptNo, TransactionDate, PhoneNumber) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *',
+            pool.query('INSERT INTO mpesa_transactions (MerchantRequestID, ResultCode, ResultDesc, amount, MpesaReceiptNo, TransactionDate, PhoneNumber) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *',
             [
-                car_id,
-                firstName,
-                lastName,
-                email,
                 MerchantRequestID,
                 ResultCode,
                 ResultDesc,
@@ -152,25 +133,6 @@ export const callBack=async(req:any,res:any,next:any)=>{
                 }else{
                     res.status(201).send({msg:`Received`})
                     console.log({msg:"Transaction process was successfull",stored:results.rows[0]})
-                    req.data={
-                        car_id,
-                        firstName,
-                        lastName,
-                        email,
-                        phoneNumber,
-                        numberOfDays,
-                        numberOfLuggage,
-                        numberOfPerson,
-                        drive,
-                        fromAddress,
-                        toAddress,
-                        journeyTime,
-                        journeyDate,
-                        reason,
-                        amount,
-                        transactionOption   
-                    }
-                    next()
                 }
             })
         }else{

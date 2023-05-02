@@ -69,26 +69,17 @@ const BookingForm = ({price,car_id,Btn}) => {
             }else{
               toast.error(parseRes.error.routine)
             }
+          }else if(parseRes.error.errorCode){
+            toast.error(parseRes.error.errorMessage)
           }else{
             toast.error(parseRes.error)
           }
-        }else if (parseRes.CheckoutRequestID){
-          // toast.success("")
-          function stk(){
-            document.getElementById("Form").reset()
-            return "Stk push send, Check your phone";
-          }
-          setTimeout(stk(),6000)
-          toast.promise(
-            stk(),
-             {
-               loading: 'Sending an stk push...',
-               success: <b>Sent, Check your phone</b>,
-               error:<b>Could not send, try again!.</b>,
-             }
-          );
-        }else{
-          toast.success(parseRes.msg)
+        }else if (parseRes.results.merchantrequestid){
+          toast.success("Sending STK push to phone")
+          document.getElementById("Form").reset()
+          setTimeout(()=>{
+            toast.success(parseRes.msg)
+          },3000)
         }
         console.log(parseRes)
       }else{

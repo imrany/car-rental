@@ -23,7 +23,8 @@ type reserveBody={
     journeyTime:string,
     journeyDate:string,
     reason:string,
-    transactionOption:string
+    transactionOption:string,
+    response:any
 }
 export interface reserveRequest{
     body:reserveBody,

@@ -34,22 +34,20 @@ create table reserved_cars(
     journeyDate varchar not null,
     amount int not null,
     reason varchar,
-    transactionOption varchar not null 
+    transactionOption varchar not null,
+    MerchantRequestID varchar not null
+
 );
 create index reserved_idx on reserved_cars (car_id);
 
 -- transaction
 create table mpesa_transactions(
-    car_id varchar primary key not null,
-    firstName varchar not null,
-    lastName varchar not null,
-    email varchar not null,
     phoneNumber int not null,
     amount int not null,
-    MerchantRequestID varchar not null,
+    MerchantRequestID varchar not null primary key,
     ResultCode varchar not null,
     ResultDesc varchar not null,
     MpesaReceiptNo varchar not null,
     TransactionDate varchar not null
 );
-create index mpesa_idx on mpesa_transactions (car_id);
+create index mpesa_idx on mpesa_transactions (MerchantRequestID);
