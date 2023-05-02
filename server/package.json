@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "Server side app for car rental",
   "main": "index.js",
+  "engines": {
+    "npm": "6.14.16",
+    "node": "14.19.1"
+  },
   "scripts": {
     "start": "node ./build/index.js",
     "dev": "npx nodemon",
-    "build": "make",
+    "build": "npx tsc",
     "clean": "make clean",
     "copy":"make copy"
   },
