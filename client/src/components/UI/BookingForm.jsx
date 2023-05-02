@@ -12,6 +12,7 @@ import {
     days,
     luggages, 
 } from "../../assets/data/SelectOptions";
+import { preloader, preloaderOff } from "../preloader/preloader";
 
 
 const BookingForm = ({price,car_id,Btn}) => {  
@@ -33,6 +34,7 @@ const BookingForm = ({price,car_id,Btn}) => {
   const [text,setText]=useState("")
 
   const submitHandler = async(e) => {
+    preloader()
     e.preventDefault()
     try {
       if(transactionOption==="mpesa"){
@@ -62,6 +64,7 @@ const BookingForm = ({price,car_id,Btn}) => {
           })
         })
         const parseRes=await response.json();
+        preloaderOff()
         if(parseRes.error){
           if(parseRes.error.code){
             if(parseRes.error.routine==="_bt_check_unique"){
@@ -84,8 +87,10 @@ const BookingForm = ({price,car_id,Btn}) => {
         console.log(parseRes)
       }else{
         toast.error("Select Mpesa as payment option")
+        preloaderOff()
       }
     } catch (error) {
+      preloaderOff()
       toast.error(error.message);
     }
   };
@@ -104,6 +109,7 @@ const BookingForm = ({price,car_id,Btn}) => {
 
   return (
     <Form onSubmit={submitHandler} id="Form">
+    <div class='preload'></div>
       <Container>
         <Row>
           <Col lg="7" className="mt-5">

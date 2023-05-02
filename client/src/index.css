@@ -9,6 +9,19 @@
   font-family: "Source Sans Pro", sans-serif;
 }
 
+/* preloader */
+.preload{
+  background: white url('./assets/Loading_icon.gif') no-repeat center;
+  background-size: 200px;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 200;
+  display: none;
+}
+
 /* ========= pre-define css ========= */
 h1,
 h2,
