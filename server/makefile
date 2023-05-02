@@ -6,11 +6,11 @@ B= npm
 
 build: 
 	@echo 'building app...'
-	rm -rf ./build&&npx tsc
+	rm -rf ./public&&npx tsc
 
 clean:
 	@echo 'removing build dir..'
-	rm -rf ./build
+	rm -rf ./public
 
 dev:
 	@echo 'starting dev server'
