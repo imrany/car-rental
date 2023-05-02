@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Server side app for car rental",
   "main": "index.js",
+  
   "scripts": {
     "start": "node ./build/index.js",
     "dev": "npx nodemon",
-    "build": "npx tsc",
+    "build": "make",
     "clean": "make clean",
     "copy":"make copy"
   },
