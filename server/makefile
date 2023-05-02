@@ -18,4 +18,4 @@ dev:
 
 copy:
 	@echo 'copying views to build dir...'
-	cp -r src/views ./build
+	cp -r ./views ./build
