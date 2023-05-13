@@ -51,3 +51,10 @@ create table mpesa_transactions(
     TransactionDate varchar not null
 );
 create index mpesa_idx on mpesa_transactions (MerchantRequestID);
+
+-- contact table
+create table user_contact(
+    user_name varchar not null,
+    user_email varchar not null,
+    user_message varchar not null
+);
