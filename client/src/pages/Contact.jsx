@@ -4,6 +4,8 @@ import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 
 import "../styles/contact.css";
+import { toast } from "react-hot-toast";
+import { preloader, preloaderOff } from "../components/preloader/preloader";
 
 const socialLinks = [
   {
@@ -33,6 +35,7 @@ const Contact = () => {
   async function submit(e){
     e.preventDefault();
     try {
+      preloader()
       let url=`https://server-car-rental.onrender.com/api/contact`
       const response=await fetch(url,{
         method:"POST",
@@ -47,13 +50,24 @@ const Contact = () => {
       })
       document.querySelector("#Form").reset();
       const parseRes=await response.json();
-      console.log(parseRes)
+      preloaderOff()
+      if(parseRes.error){
+        if(parseRes.error.code){
+          toast.error(parseRes.error.routine)
+        }else{
+          toast.error(parseRes.error)
+        }
+      }else if(parseRes.msg){
+        toast.success(parseRes.msg)
+      }
     } catch (error) {
-      alert(error.message)      
+      preloaderOff()
+      toast.error(error.message)      
     }
   }
   return (
     <Helmet title="Contact">
+      <div className="preload"></div>
       <CommonSection title="Contact" />
       <section>
         <Container>

@@ -57,7 +57,7 @@ const Footer = () => {
             <div className="logo footer__logo">
               <h1>
                 <Link to="/home" className=" d-flex align-items-center gap-2">
-                  <i class="ri-car-line"></i>
+                  <i className="ri-car-line"></i>
                   <span>
                     Rent Car <br /> Service
                   </span>
@@ -104,7 +104,7 @@ const Footer = () => {
               <div className="newsletter">
                 <input type="email" placeholder="Email" onChange={e=>setEmail(e.target.value)} title="Subcribe To Our NewsLetter"/>
                 <span>
-                  <i class="ri-send-plane-line" onClick={subcribeToNewsLetter}></i>
+                  <i className="ri-send-plane-line" onClick={subcribeToNewsLetter}></i>
                 </span>
               </div>
             </div>
@@ -113,7 +113,7 @@ const Footer = () => {
           <Col lg="12">
             <div className="footer__bottom">
               <p className="section__description d-flex align-items-center justify-content-center gap-1 pt-4">
-                <i class="ri-copyright-line"></i>Copyright {year}, Developed by
+                <i className="ri-copyright-line"></i>Copyright {year}, Developed by
                 Bellah Oyucho. All rights reserved.
               </p>
             </div>
