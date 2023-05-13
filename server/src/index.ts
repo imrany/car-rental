@@ -5,9 +5,6 @@ import router from "./routes/api"
 import views from "./routes/view"
 dotenv.config()
 
-// const options={
-//     origin:"http://localhost:3000"
-// }
 const app=express()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
