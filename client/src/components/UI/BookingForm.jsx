@@ -95,7 +95,7 @@ const BookingForm = ({price,car_id,Btn}) => {
     }
   };
 
-  const [submitBtn,setSubmitBtn]=useState(
+  const submitBtn=(
     <div className="payment text-end mt-5">
       <button className="submit-btn" type="submit">Reserve Now</button>
     </div>
