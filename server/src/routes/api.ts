@@ -1,7 +1,6 @@
 import express from "express"
 import { 
     reserve,
-    contact,
     checkReserve
 } from "../controller/reserve"
 import{
@@ -13,6 +12,9 @@ import{
 import { 
     adminLogin 
 } from "../controller/admin"
+import { 
+    contact
+ } from "../controller/user"
 const router=express.Router()
 
 router.post("/reserve_car",token,stkPush,reserve)

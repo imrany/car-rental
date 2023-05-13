@@ -1,4 +1,5 @@
-// import pool from "../postgres.js"
+import pool from "../postgres"
+import { contactItems } from "../types";
 
 // export const getUsers = (request, response) => {
 //     pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
@@ -57,3 +58,20 @@
 //       response.status(200).send(`User deleted with ID: ${id}`)
 //     })
 // }
+
+export const contact=async(req:contactItems,res:any)=>{
+    try {
+        const {name, email, message}=req.body;
+        pool.query('INSERT INTO user_contact (user_name, user_email, user_message) VALUES ($1, $2, $3) RETURNING *',
+        [name, email, message], 
+        (error, results) => {
+            if (error) {
+            res.send({error:error})
+            }else{
+                res.status(201).send({msg:`Message sent`,results:results.rows[0]})
+            }
+        })
+    } catch (error:any) {
+        res.status(500).send({error:error.message})
+    }
+}

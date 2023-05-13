@@ -54,13 +54,3 @@ export const checkReserve=async(req:any,res:any)=>{
         res.status(500).send({error:error.message})
     }
 }
-
-export const contact=async(req:contactItems,res:any)=>{
-    try {
-        const {name,email,message}=req.body;
-        res.send({msg:"contact api"})
-    } catch (error:any) {
-        res.status(500).send({error:error.message})
-        console.log(error.message)
-    }
-}
