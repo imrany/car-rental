@@ -1,6 +1,2 @@
 # Car Rental
-
-
- routes:
- > Contact us form
- /api/contact
+Visit [Car Rental](https://car-rental-lake.vercel.app/)
