@@ -33,7 +33,7 @@ const Contact = () => {
   async function submit(e){
     e.preventDefault();
     try {
-      let url=`http://localhost:8000/api/contact`
+      let url=`https://server-car-rental.onrender.com/api/contact`
       const response=await fetch(url,{
         method:"POST",
         headers:{

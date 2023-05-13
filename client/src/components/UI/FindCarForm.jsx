@@ -25,7 +25,7 @@ const FindCarForm = () => {
   async function handleSubmit(e){
     e.preventDefault()
     try {
-      let url=`http://localhost:5000/api/find_car`
+      let url=`https://server-car-rental.onrender.com/api/find_car`
       const response=await fetch(url,{
         method:"POST",
         headers:{
