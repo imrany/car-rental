@@ -14,7 +14,7 @@
         margin: 10px 0;
         padding: 10px;
         width: 50vw;
-        border-radius: 5px;
+        border-radius: 10px;
         border: 1px solid gray;
     }
     .admin-login form button{
@@ -22,6 +22,10 @@
         padding: 10px;
         width: 50vw;
         font-size: medium;
+        background: black;
+        border: none;
+        border-radius: 10px;
+        color: white;
         cursor: pointer;
     }
     @media screen and (max-width:600px) {
@@ -40,6 +44,10 @@
         </form>
     </div>
     <script>
+        if(sessionStorage.getItem("token")){
+            window.location.href="/admin/home"
+        }
+        
         const form=document.querySelector('form')
         form.addEventListener('submit',async(e)=>{
             e.preventDefault()
@@ -61,6 +69,7 @@
                 if(parseRes.error){
                     alert(parseRes.error)
                 }else{
+                    sessionStorage.setItem("token",parseRes.token)
                     window.location.href=parseRes.link
                 }
             } catch (error) {

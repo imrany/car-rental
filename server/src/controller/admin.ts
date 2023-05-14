@@ -1,8 +1,12 @@
 const adminLogin=async(req:any,res:any)=>{
     try {
         const {Username,password}=req.body
-        if(Username===process.env.ADMIN_USERNAME&&password===process.env.ADMIN_PASSWORD){
-            res.status(201).send({msg:'Sucessfull login', link:'/admin/home'})
+        let $adminName=process.env.ADMIN_USERNAME
+        let $adminPassword=process.env.ADMIN_PASSWORD
+        let secret=process.env.JWT_SECRET
+        if(Username===$adminName&&password===$adminPassword){
+            let token=Buffer.from($adminName+":"+$adminPassword+":"+secret).toString('base64')
+            res.status(201).send({msg:'Sucessfull login', link:'/admin/home',token:token})
         }else{
             res.status(401).send({error:'Not Authorized'})
         }
