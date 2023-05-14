@@ -38,7 +38,7 @@ const BookingForm = ({price,car_id,Btn}) => {
     e.preventDefault()
     try {
       if(transactionOption==="mpesa"){
-        let url=`http://localhost:8000/api/reserve_car`
+        let url=`https://server-car-rental.onrender.com/api/reserve_car`
         const response = await fetch(url,{
           method:"POST",
           headers:{
