@@ -18,10 +18,9 @@
     <div class="home">
         <h1>Tables</h1>
         <ul class="links">
-            <li><a href="/admin/tables/Cars">Cars</a></li>
-            <li><a href="/admin/tables/mpesa_transactions">mpesa_transactions</a></li>
-            <li><a href="/admin/tables/reserved_cars">reserved_cars</a></li>
-            <li><a href="/admin/tables/user_contact">user_contact</a></li>
+            <%tables.forEach(i=>{%>
+                <li><a href="/admin/tables/<%=i%>"><%=i%></a></li>
+            <%})%>
         </ul>
     </div>
     <script>

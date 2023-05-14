@@ -7,18 +7,26 @@ views.get('/',(req,res)=>{
 })
 
 views.get('/home',(req,res)=>{
-    res.render('home')
+    let tables=[
+        "cars",
+        "mpesa_transactions",
+        "reserved_cars",
+        "user_contact"
+    ]
+    res.render('home',{tables})
 })
+
 views.get('/tables/:name',(req,res)=>{
     try {
-        const name= parseInt(req.params.name)
-        pool.query(`SELECT * FROM $1 RETURNING *`, [name],
+        const {name}= req.params
+        pool.query(`SELECT * FROM ${name}`,
         (error, results) => {
             if (error) {
-                console.log({error:error})
+                res.send({error:error})
                 res.redirect('/admin/home')
             }else{
-                res.render('tables/index',{name})
+                res.render('tables/index',{name, results:results.rows})
+                console.log(results.rows)
             }
         })
     } catch (error) {
