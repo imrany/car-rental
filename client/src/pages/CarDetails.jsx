@@ -16,7 +16,7 @@ const CarDetails = () => {
   
   async function seeIfReserved(){
     try {
-      const url=`https://server-car-rental.onrender.com/api/reserve_car/${singleCarItem.id}`
+      const url=`http://localhost:8000/api/reserve_car/${singleCarItem.id}`
       const response=await fetch(url)
       const parseRes=await response.json();
       if (parseRes.not_reserved){

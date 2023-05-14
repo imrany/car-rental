@@ -1,0 +1,25 @@
+<html lang="en">
+<%- include('../partials/head.ejs')%>
+<style>
+   .home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   }
+   @media screen and (max-width:600px) {
+        
+    }
+</style>
+<body>
+    <div class="home">
+        <h1><%= name%> table</h1>
+        
+    </div>
+    <script>
+       if(!sessionStorage.getItem("token")){
+        window.location.href="/admin"
+       }
+    </script>
+</body>
+</html>
