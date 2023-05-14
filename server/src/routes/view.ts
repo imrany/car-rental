@@ -25,8 +25,7 @@ views.get('/tables/:name',(req,res)=>{
                 res.send({error:error})
                 res.redirect('/admin/home')
             }else{
-                res.render('tables/index',{name, results:results.rows})
-                console.log(results.rows)
+                res.render('tables/index',{name, results:results.rows, fields:results.fields})
             }
         })
     } catch (error) {
