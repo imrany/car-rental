@@ -5,7 +5,7 @@ import CommonSection from "../components/UI/CommonSection";
 
 import "../styles/contact.css";
 import { toast } from "react-hot-toast";
-import { preloader, preloaderOff } from "../components/preloader/preloader";
+import { loader } from "../components/preloader/preloader";
 
 const socialLinks = [
   {
@@ -35,7 +35,7 @@ const Contact = () => {
   async function submit(e){
     e.preventDefault();
     try {
-      preloader()
+      loader.on()
       let url=`https://server-car-rental.onrender.com/api/contact`
       const response=await fetch(url,{
         method:"POST",
@@ -50,7 +50,7 @@ const Contact = () => {
       })
       document.querySelector("#Form").reset();
       const parseRes=await response.json();
-      preloaderOff()
+      loader.off()
       if(parseRes.error){
         if(parseRes.error.code){
           toast.error(parseRes.error.routine)
@@ -61,7 +61,7 @@ const Contact = () => {
         toast.success(parseRes.msg)
       }
     } catch (error) {
-      preloaderOff()
+      loader.off()
       toast.error(error.message)      
     }
   }
