@@ -42,10 +42,9 @@ const Testimonial = () => {
     <Slider {...settings}>
       <div className="testimonial py-4 px-3">
         <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
+        I travel frequently for work, and I rely on this car hire service every time. 
+        Their fleet offers a wide range of options to suit my needs, and the booking process is simple and efficient.
+        The vehicles are always clean and well-maintained, making my travels hassle-free
         </p>
 
         <div className="mt-3 d-flex align-items-center gap-4">
@@ -60,10 +59,9 @@ const Testimonial = () => {
 
       <div className="testimonial py-4 px-3">
         <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
+        I recently rented a car for a family vacation, and I couldn't be happier with the experience. 
+        The staff was incredibly helpful in selecting the right vehicle for our group, and the rates were reasonable. 
+        Our trip was made even more memorable thanks to the comfort and reliability of the rental car
         </p>
 
         <div className="mt-3 d-flex align-items-center gap-4">
@@ -78,10 +76,9 @@ const Testimonial = () => {
 
       <div className="testimonial py-4 px-3">
         <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
+        I had an amazing experience with this car hire service! 
+        The process was seamless, the staff was friendly, and the vehicle was in pristine condition. 
+        I highly recommend them for all your rental needs
         </p>
 
         <div className="mt-3 d-flex align-items-center gap-4">
@@ -96,17 +93,16 @@ const Testimonial = () => {
 
       <div className="testimonial py-4 px-3">
         <p className="section__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
-          explicabo molestias recusandae repudiandae, dolor, sapiente placeat
-          ab, animi eum minima nulla facere aliquam aut vitae quo pariatur
-          voluptate odit?
+        The convenience and reliability of this car hire company are unmatched. 
+        From the moment I made the reservation to the drop-off, everything was handled with utmost professionalism.
+         I appreciate their attention to detail and commitment to customer satisfaction
         </p>
 
         <div className="mt-3 d-flex align-items-center gap-4">
           <img src={ava04} alt="" className="w-25 h-25 rounded-2" />
 
           <div>
-            <h6 className="mb-0 mt-3">Mr. Mauti</h6>
+            <h6 className="mb-0 mt-3">Mr. John Mauti</h6>
             <p className="section__description">Customer</p>
           </div>
         </div>

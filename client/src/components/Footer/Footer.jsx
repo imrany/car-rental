@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import "../../styles/footer.css";
-import { toast } from "react-hot-toast";
 
 const quickLinks = [
   {
@@ -30,25 +29,6 @@ const quickLinks = [
 const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();
-
-  function validateEmail(email){
-    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)
-  }
-  
-  const [email,setEmail]=useState(null);
-  async function subcribeToNewsLetter(e){
-    try {
-      if(email){
-        if(validateEmail(email)){
-          toast.success(email)
-        }else{
-          toast.error("Enter a valid email")
-        }
-      }
-    } catch (error) {
-      toast.error(error.message)
-    }
-  }
   return (
     <footer className="footer">
       <Container>
@@ -57,7 +37,7 @@ const Footer = () => {
             <div className="logo footer__logo">
               <h1>
                 <Link to="/home" className=" d-flex align-items-center gap-2">
-                  <i className="ri-car-line"></i>
+                  <i class="ri-car-line"></i>
                   <span>
                     Rent Car <br /> Service
                   </span>
@@ -65,10 +45,8 @@ const Footer = () => {
               </h1>
             </div>
             <p className="footer__logo-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequuntur, distinctio, itaque reiciendis ab cupiditate harum ex
-              quam veniam, omnis expedita animi quibusdam obcaecati mollitia?
-              Delectus et ad illo recusandae temporibus?
+            We make renting a car easy, so you can focus on enjoying your trip.
+            Safety, reliability, and exceptional service - that's our commitment to you
             </p>
           </Col>
 
@@ -88,12 +66,12 @@ const Footer = () => {
           <Col lg="3" md="4" sm="6">
             <div className="mb-4">
               <h5 className="footer__link-title mb-4">Head Office</h5>
-              <p className="office__info">Okore Road , Kisumu</p>
+              <p className="office__info">Lake Basin Mall, Kisumu</p>
               <p className="office__info">Phone: +254718472188</p>
 
-              <p className="office__info">Email: augustine@gmail.com</p>
+              <p className="office__info">Email: otienoaugustine99@gmail.com</p>
 
-              <p className="office__info">Office Time: 10am - 7pm</p>
+              <p className="office__info">Office Time: 8am - 9pm</p>
             </div>
           </Col>
 
@@ -102,9 +80,9 @@ const Footer = () => {
               <h5 className="footer__link-title">Email</h5>
               <p className="section__description">Send Email</p>
               <div className="newsletter">
-                <input type="email" placeholder="Email" onChange={e=>setEmail(e.target.value)} title="Subcribe To Our NewsLetter"/>
+                <input type="email" placeholder="Email" />
                 <span>
-                  <i className="ri-send-plane-line" onClick={subcribeToNewsLetter}></i>
+                  <i class="ri-send-plane-line"></i>
                 </span>
               </div>
             </div>
@@ -113,8 +91,8 @@ const Footer = () => {
           <Col lg="12">
             <div className="footer__bottom">
               <p className="section__description d-flex align-items-center justify-content-center gap-1 pt-4">
-                <i className="ri-copyright-line"></i>Copyright {year}, Developed by
-                Bellah Oyucho. All rights reserved.
+                <i class="ri-copyright-line"></i>Copyright {year}, Developed by
+                Oyucho. All rights reserved.
               </p>
             </div>
           </Col>

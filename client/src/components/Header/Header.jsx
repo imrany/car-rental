@@ -38,22 +38,19 @@ const Header = () => {
               <div className="header__top__left">
                 <span>Need Help?</span>
                 <span className="header__top__help">
-                  <i className="ri-phone-fill"></i> 
-                  <a href="tel:+254718472188" target="_blank" rel="noreferrer" style={{color:"white", textDecoration:"none"}}>+254718472188</a>
+                  <i class="ri-phone-fill"></i> +254718472188
                 </span>
               </div>
             </Col>
 
             <Col lg="6" md="6" sm="6">
               <div className="header__top__right d-flex align-items-center justify-content-end gap-3">
-                <Link to="/login" className=" d-flex align-items-center gap-1">
-                  <i className="ri-login-circle-line"></i> 
-                  Login
+                <Link to="#" className=" d-flex align-items-center gap-1">
+                  <i class="ri-login-circle-line"></i> Login
                 </Link>
 
-                <Link to="/register" className=" d-flex align-items-center gap-1">
-                  <i className="ri-user-line"></i> 
-                  Register
+                <Link to="#" className=" d-flex align-items-center gap-1">
+                  <i class="ri-user-line"></i> Register
                 </Link>
               </div>
             </Col>
@@ -69,7 +66,7 @@ const Header = () => {
               <div className="logo">
                 <h1>
                   <Link to="/home" className=" d-flex align-items-center gap-2">
-                    <i className="ri-car-line"></i>
+                    <i class="ri-car-line"></i>
                     <span>
                       Rent Car <br /> Service
                     </span>
@@ -81,7 +78,7 @@ const Header = () => {
             <Col lg="3" md="3" sm="4">
               <div className="header__location d-flex align-items-center gap-2">
                 <span>
-                  <i className="ri-earth-line"></i>
+                  <i class="ri-earth-line"></i>
                 </span>
                 <div className="header__location-content">
                   <h4>Kenya</h4>
@@ -93,11 +90,11 @@ const Header = () => {
             <Col lg="3" md="3" sm="4">
               <div className="header__location d-flex align-items-center gap-2">
                 <span>
-                  <i className="ri-time-line"></i>
+                  <i class="ri-time-line"></i>
                 </span>
                 <div className="header__location-content">
                   <h4>Sunday to Friday</h4>
-                  <h6>10am - 7pm</h6>
+                  <h6> 8am - 9pm</h6>
                 </div>
               </div>
             </Col>
@@ -110,7 +107,7 @@ const Header = () => {
             >
               <button className="header__btn btn ">
                 <Link to="/contact">
-                  <i className="ri-phone-line"></i> Request a call
+                  <i class="ri-phone-line"></i> Request a call
                 </Link>
               </button>
             </Col>
@@ -124,7 +121,7 @@ const Header = () => {
         <Container>
           <div className="navigation__wrapper d-flex align-items-center justify-content-between">
             <span className="mobile__menu">
-              <i className="ri-menu-line" onClick={toggleMenu}></i>
+              <i class="ri-menu-line" onClick={toggleMenu}></i>
             </span>
 
             <div className="navigation" ref={menuRef} onClick={toggleMenu}>
@@ -147,7 +144,7 @@ const Header = () => {
               <div className="search__box">
                 <input type="text" placeholder="Search" />
                 <span>
-                  <i className="ri-search-line"></i>
+                  <i class="ri-search-line"></i>
                 </span>
               </div>
             </div>

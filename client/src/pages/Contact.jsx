@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, FormGroup, Input } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
-
+import { Link } from "react-router-dom";
 import "../styles/contact.css";
 import { toast } from "react-hot-toast";
 import { loader } from "../components/preloader/preloader";
@@ -102,33 +102,29 @@ const Contact = () => {
               <div className="contact__info">
                 <h6 className="fw-bold">Contact Information</h6>
                 <p className="section__description mb-0">
-                  Okore Road Millimani, Kisumu
+                  Lake Basin Mall, Kisumu
                 </p>
                 <div className=" d-flex align-items-center gap-2">
                   <h6 className="fs-6 mb-0">Phone:</h6>
-                  <a href="tel:+254 752260784" target="_blank" rel="noreferrer" style={{textDecoration:"none"}} className="section__description mb-0">+254 752260784</a>
+                  <p className="section__description mb-0">+254 718472188</p>
                 </div>
 
                 <div className=" d-flex align-items-center gap-2">
                   <h6 className="mb-0 fs-6">Email:</h6>
-                  <a href="mailto:austine@gmail.com" style={{textDecoration:"none"}} target="_blank" rel="noreferrer" className="section__description mb-0">
-                    austine@gmail.com
-                  </a>
+                  <p className="section__description mb-0">otienoaugustine99@gmail.com</p>
                 </div>
-
 
                 <h6 className="fw-bold mt-4">Follow Us</h6>
 
                 <div className=" d-flex align-items-center gap-4 mt-3">
                   {socialLinks.map((item, index) => (
-                    <a href={item.url}
+                    <Link
+                      to={item.url}
                       key={index}
-                      target="_blank"
-                      rel="noreferrer"
                       className="social__link-icon"
                     >
                       <i class={item.icon}></i>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>

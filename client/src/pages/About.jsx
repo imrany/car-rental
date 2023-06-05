@@ -32,17 +32,17 @@ const About = () => {
                 </h2>
 
                 <p className="section__description">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Eveniet veniam assumenda aperiam accusantium ex autem
-                  perferendis repellendus nostrum delectus. Nemo et dolore est
-                  tempore rem minima adipisci magni dolorum ipsam.
+                We understand that your journey begins the moment you step into one of our vehicles, and we strive to make it a comfortable and enjoyable one.
+                What sets us apart is our commitment to exceptional customer service. 
+                Our knowledgeable and friendly team is always ready to assist you in finding the ideal vehicle, answering your questions, and ensuring a smooth rental process from start to finish.
+                We believe that personalized attention and attention to detail make all the difference in providing an outstanding car rental service.
                 </p>
 
                 <p className="section__description">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Eveniet veniam assumenda aperiam accusantium ex autem
-                  perferendis repellendus nostrum delectus. Nemo et dolore est
-                  tempore rem minima adipisci magni dolorum ipsam.
+                When you choose our car rental service, you can expect competitive prices, transparent policies, and a hassle-free experience. 
+                We value your time and understand the importance of reliability, which is why we maintain our vehicles to the highest standards and prioritize your safety and comfort.
+                Whether you're a frequent traveler or renting a car for the first time, we are here to make your journey convenient and stress-free. 
+                Trust us to be your reliable partner on the road, offering quality vehicles, exceptional service, and a commitment to your satisfaction.
                 </p>
 
                 <div className=" d-flex align-items-center gap-3 mt-4">
@@ -52,7 +52,7 @@ const About = () => {
 
                   <div>
                     <h6 className="section__subtitle">Need Any Help?</h6>
-                    <h4>+254 752260784</h4>
+                    <h4>+254 718472188</h4>
                   </div>
                 </div>
               </div>

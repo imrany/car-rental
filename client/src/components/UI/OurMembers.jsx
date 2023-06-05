@@ -1,48 +1,49 @@
 import React from "react";
 import "../../styles/our-member.css";
 import { Col } from "reactstrap";
+import { Link } from "react-router-dom";
 import ava01 from "../../assets/all-images/ava-1.jpg";
 import ava02 from "../../assets/all-images/ava-2.jpg";
 import ava03 from "../../assets/all-images/ava-3.jpg";
 
 const OUR__MEMBERS = [
   {
-    name: "Riggy G",
+    name: "John Mkubwa",
     experience: "10 years of experience",
-    fbUrl: "https://facebook.com/imrany",
-    instUrl: "https://instagram.com/imrany",
-    twitUrl: "https://twitter.com/matano_imran",
-    linkedinUrl: "https://linkedin.com/",
+    fbUrl: "#",
+    instUrl: "#",
+    twitUrl: "#",
+    linkedinUrl: "#",
     imgUrl: ava01,
   },
 
   {
-    name: "Jeff Koinange",
-    experience: "10 years of experience",
-    fbUrl: "https://facebook.com/imrany",
-    instUrl: "https://instagram.com/imrany",
-    twitUrl: "https://twitter.com/matano_imran",
-    linkedinUrl: "https://linkedin.com/",
+    name: "Calvin Otieno",
+    experience: "7 years of experience",
+    fbUrl: "#",
+    instUrl: "#",
+    twitUrl: "#",
+    linkedinUrl: "#",
     imgUrl: ava02,
   },
 
   {
     name: "Truphosa Magdalena",
-    experience: "10 years of experience",
-    fbUrl: "https://facebook.com/imrany",
-    instUrl: "https://instagram.com/imrany",
-    twitUrl: "https://twitter.com/matano_imran",
-    linkedinUrl: "https://linkedin.com/imrany",
+    experience: "3 years of experience",
+    fbUrl: "#",
+    instUrl: "#",
+    twitUrl: "#",
+    linkedinUrl: "#",
     imgUrl: ava03,
   },
 
   {
     name: "Josinta Maria",
-    experience: "10 years of experience",
-    fbUrl: "https://facebook.com/imrany",
-    instUrl: "https://instagram.com/imrany",
-    twitUrl: "https://twitter.com/matano_imran",
-    linkedinUrl: "https://linkedin.com/imrany",
+    experience: "5 years of experience",
+    fbUrl: "#",
+    instUrl: "#",
+    twitUrl: "#",
+    linkedinUrl: "#",
     imgUrl: ava01,
   },
 ];
@@ -57,20 +58,20 @@ const OurMembers = () => {
               <img src={item.imgUrl} alt="" className="w-100" />
 
               <div className="single__member-social">
-                <a href={item.fbUrl} target="_blank" rel="noreferrer">
+                <Link to={item.fbUrl}>
                   <i class="ri-facebook-line"></i>
-                </a>
-                <a href={item.twitUrl} target="_blank" rel="noreferrer">
+                </Link>
+                <Link to={item.twitUrl}>
                   <i class="ri-twitter-line"></i>
-                </a>
+                </Link>
 
-                <a href={item.linkedinUrl} target="_blank" rel="noreferrer">
+                <Link to={item.linkedinUrl}>
                   <i class="ri-linkedin-line"></i>
-                </a>
+                </Link>
 
-                <a href={item.instUrl} target="_blank" rel="noreferrer">
+                <Link to={item.instUrl}>
                   <i class="ri-instagram-line"></i>
-                </a>
+                </Link>
               </div>
             </div>
 
